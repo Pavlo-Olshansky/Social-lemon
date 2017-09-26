@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>{% trans 'Login' %}</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href='{% static "css/bootstrap-social.css" %}' />
+
+
+      <link rel="stylesheet" href="{% static 'css/login/login.css' %}">  
+</head>
+
+<body>
+  <div class="login-form">
+     <h1>{% trans 'Login' %}</h1>
+     <div class="form-group ">
+
+      {% if form.errors %}
+        <p style="color: red">{% trans "Your username and password didn't match." %}</p>
+      {% endif %}
+
+	   <form method="post">
+			{% csrf_token %}
+      {% for field in form %}
+        <p align="center" >
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+			<button type="submit" class="log-btn" >{% trans 'Login' %}</button>
+		</form>
+
+      <a class="link" href="/password_reset/">{% trans 'Lost your password' %}?</a>
+		</div>
+
+    <a href="/signup/">
+      <button type="button" class="log-btn">{% trans 'Sign up' %}</button>
+    </a>
+
+    <p strong align="center">{% trans 'or' %}</p>
+    <a href="/accounts/facebook/login" class="btn btn-block btn-social btn-xs btn-facebook">
+      <span class="fa fa-facebook"></span> {% trans 'Login with Facebook' %}
+    </a>
+
+   
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="{% static 'js/login/login.js' %}"></script>
+
+</body>
+</html>
+
+

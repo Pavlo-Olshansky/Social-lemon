@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% load i18n %}
+
+
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <title>
+	    {% block title %}Welcome!{% endblock title %}
+	  </title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="description" content="__description__" />
+    <meta name="keywords" content="__keywords__, __keywords__" />
+    <meta name="author" content="Pavlo Olshansky" />
+
+    <link rel="stylesheet" href='{% static "css/main.css" %}' />
+    <link rel="stylesheet" href='{% static "css/bootstrap-social.css" %}' />
+
+
+		{% block extra_css %}
+	  	{% endblock extra_css %}
+
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+				<div class="menu">
+					<ul class="drop-menu-main">
+						<li>
+					    <span class="drop-down"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> {% trans 'Home' %} </a></span>
+					  </li>
+
+						{% if user.is_authenticated %}
+					  <li>
+					      <span class="drop-down"><i class="fa fa-user" aria-hidden="true"></i> {% trans 'Profile' %}</span>
+					      <div class="drop-menu-main-sub">
+					          <span class="title"></span>
+					          <a href="/profile">{% trans 'My profile' %}</a>
+					          <a href="/messages">{% trans 'Messages' %}</a>
+					          <a href="/logout">{% trans 'Logout' %}</a>
+					      </div>
+					  </li>
+					</ul>
+				</div>
+					{% else %}
+					</ul>
+				</div>
+					{% endif %}
+
+				{% block left_header %}
+
+				<!-- LANGUAGES MENU -->
+				{% get_current_language as LANGUAGE_CODE %}
+				{% get_available_languages as LANGUAGES %}
+				{% get_language_info_list for LANGUAGES as languages %}
+
+				{% for language in languages %}
+				  <form action="{% url 'set_language' %}" method="post" id="form_{{ language.code }}" style="display:inline!important;">
+				  {% csrf_token %}
+				    <input name="next" type="hidden" value="{{ redirect_to }}" />
+				    <input name="language" type="hidden" value="{{ language.code }}" />
+				  </form>
+				  <button class="lang-button" type="submit" form="form_{{ language.code }}" value="Submit">{{language.code}}</button>
+				{% endfor %}
+
+				{% block menu %}
+				
+					{% if user.is_authenticated %}
+						<p>{% trans 'Welcome' %}, {{ user }}!</p>
+						<p><a href="/logout/">Logout</a></p>
+					{% else %}
+
+						<p><a href="{% url 'home:login' %}">{% trans 'Login' %}</a> 
+						{% trans 'or' %} 
+						<a href="{% url 'home:signup' %}">{% trans 'Sign up' %}</a>
+							
+					    <p><a href="/accounts/facebook/login" class="btn btn-block btn-social btn-xs btn-facebook">
+				        	<span class="fa fa-facebook"></span> {% trans 'Login with Facebook' %}
+					    </a>
+
+					{% endif %}
+				{% endblock menu %}
+
+
+				{% endblock left_header %}
+				</div>
+			</header>
+
+		<!-- Main -->
+			{% block main %}
+			<div id="main">
+					<section id="one">
+						{% block content %}
+						{% endblock content %}
+			</div>
+			{% endblock main %}
+
+	<div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    </div>
+  </div>
+
+
+		<!-- Footer -->
+		{% block footer %}
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						<li><a href="/api/"><span class="label">API</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; {% trans '2017. Pavlo Olshansky.'%}</li><li> {% trans 'All Rights Reserved.' %}</li>
+					</ul>
+				</div>
+			</footer>
+		{% endblock footer%}
+
+		{% block js_block %}
+		<!-- Scripts -->
+			<script src='{% static "js/jquery.min.js" %}'></script>
+			<script src='{% static "js/jquery.poptrox.min.js" %}'></script>
+			<script src='{% static "js/skel.min.js" %}'></script>
+			<script src='{% static "js/util.js" %}'></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src='{% static "js/main.js" %}'></script>
+			<script type="text/javascript">
+    $(document).ready(function () {
+
+        function hideallDropdowns() {
+            $(".dropped .drop-menu-main-sub").hide();
+            $(".dropped").removeClass('dropped');
+            $(".dropped .drop-menu-main-sub .title").unbind("click");
+        }
+
+        function showDropdown(el) {
+            var el_li = $(el).parent().addClass('dropped');
+            el_li
+                .find('.title')
+                .click(function () {
+                    hideallDropdowns();
+                })
+                .html($(el).html());
+
+            el_li.find('.drop-menu-main-sub').show();
+        }
+
+        $(".drop-down").click(function(){
+            showDropdown(this);
+        });
+
+        $(document).mouseup(function () {
+            hideallDropdowns();
+        });
+    });
+</script>
+		{% endblock js_block %}
+
+		{% block extra_js %}
+	  	{% endblock extra_js %}
+
+	</body>
+</html>

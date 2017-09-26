@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Profile' %}{% endblock title %}
+
+
+{% block content %}
+
+
+{% if not is_own %}
+  <h1>{% blocktrans %}{{ user }} profile {% endblocktrans %}</h1>
+{% else %}
+  <h1>{% trans 'My profile' %} <a href="{% url 'home:edit_profile' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h1>
+
+{% endif %}
+{% if user.socialaccount_set.all.0.get_avatar_url %}
+  <img 
+  src="{{ user.socialaccount_set.all.0.get_avatar_url }}" 
+  alt="{{ user }}"
+  class="img image-popup" 
+  width=140  
+  align="left" />
+{% else %}
+<a href="{{ user.profile.file.url }}" class="img image-popup">
+  <img 
+  src="{{ user.profile.file.url }}" 
+  alt="{{ user }}" 
+  class="img-responsive" 
+  width=140 
+  align="left">
+</a>
+{% endif %}
+<hr>
+
+<!-- Username -->
+<p>
+  <i>{% blocktrans %}Username:{% endblocktrans %}</i> {{ user }}
+  {% if not is_own %}
+    <a style="float: right;" 
+    align="right" 
+    href="/messages/write/{{ user.username }}" class="button">Message</a>
+  {% endif %}
+</p>
+
+<br><br>
+<!-- First name -->
+{% if user.first_name %}
+  <p><i>{% blocktrans %}First name:{% endblocktrans %}</i> {{ user.first_name }}</p>
+{% elif is_own %}
+  <p><i>{% blocktrans %}First name:{% endblocktrans %}</i> <a href="{% url 'home:edit_profile' %}">{% blocktrans %}Add first name{% endblocktrans %}</a></p>
+{% endif %}
+
+<!-- Last name -->
+{% if user.last_name %}
+  <p><i>{% blocktrans %}Last name:{% endblocktrans %}</i> {{ user.last_name }}</p>
+{% elif is_own %}
+  <p><i>{% blocktrans %}Last name:{% endblocktrans %}</i> <a href="{% url 'home:edit_profile' %}">{% blocktrans %}Add last name{% endblocktrans %}</a></p>
+{% endif %}
+
+<!-- Birth day -->
+{% if user.profile.birth_date %}
+  <p><i>{% blocktrans %}Birth date:{% endblocktrans %}</i> {{ user.profile.birth_date }}</p>
+{% elif is_own %}
+  <p><i>{% blocktrans %}Birth date:{% endblocktrans %}</i> <a href="{% url 'home:edit_profile' %}">{% blocktrans %}Add birth date{% endblocktrans %}</a></p>
+{% endif %}
+
+{% endblock content %}
+

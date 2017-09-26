@@ -1,0 +1,388 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-17 23:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: .\home\forms.py:19 .\home\forms.py:45
+#, fuzzy
+#| msgid "First name:"
+msgid "First name"
+msgstr "Ім'я:"
+
+#: .\home\forms.py:20 .\home\forms.py:46
+#, fuzzy
+#| msgid "Last name:"
+msgid "Last name"
+msgstr "Прізвище:"
+
+#: .\home\forms.py:21 .\home\forms.py:54 .\home\models.py:14
+#, fuzzy
+#| msgid "Birth date:"
+msgid "Birth date"
+msgstr "Дата народження:"
+
+#: .\home\forms.py:22
+msgid "Email"
+msgstr "Пошта"
+
+#: .\home\forms.py:40
+#, fuzzy
+#| msgid "Username:"
+msgid "Username"
+msgstr "Нік:"
+
+#: .\home\forms.py:41
+#, fuzzy
+#| msgid "change password"
+msgid "Password"
+msgstr "Змінити пароль"
+
+#: .\home\models.py:13
+msgid "File"
+msgstr "Файл"
+
+#: .\social_network\settings.py:128
+msgid "English"
+msgstr "Англійська"
+
+#: .\social_network\settings.py:129
+msgid "Ukraine"
+msgstr "Українська"
+
+#: .\social_network\templates\accounts\change_password.html:4
+#: .\social_network\templates\accounts\edit_profile.html:5
+#: .\social_network\templates\accounts\profile.html:5
+#: .\social_network\templates\base.html:38
+msgid "Profile"
+msgstr "Профіль"
+
+#: .\social_network\templates\accounts\change_password.html:4
+msgid "change password"
+msgstr "змінити пароль"
+
+#: .\social_network\templates\accounts\change_password.html:10
+#: .\social_network\templates\accounts\edit_profile.html:19
+#: .\social_network\templates\accounts\edit_profile.html:25
+#: .\social_network\templates\registration\password_reset_form.html:9
+msgid "Submit"
+msgstr "Підтвердити"
+
+#: .\social_network\templates\accounts\edit_profile.html:5
+msgid "Edit profile"
+msgstr "Редагувати профіль"
+
+#: .\social_network\templates\accounts\edit_profile.html:14
+msgid "Change profile information"
+msgstr "Змінити інформацію акаунта"
+
+#: .\social_network\templates\accounts\edit_profile.html:28
+msgid "Change profile image"
+msgstr "Змініти фото"
+
+#: .\social_network\templates\accounts\edit_profile.html:35
+msgid "Upload new photo"
+msgstr "Завантажити нове фото"
+
+#: .\social_network\templates\accounts\edit_profile.html:47
+#: .\social_network\templates\registration\password_reset_confirm.html:6
+#: .\social_network\templates\registration\password_reset_confirm.html:10
+msgid "Change password"
+msgstr "Змінити пароль"
+
+#: .\social_network\templates\accounts\edit_profile.html:49
+msgid "Go to change password form"
+msgstr "Перейти до форми зміни паролю"
+
+#: .\social_network\templates\accounts\edit_profile.html:59
+msgid "Crop the photo"
+msgstr "Обрізати фото"
+
+#: .\social_network\templates\accounts\edit_profile.html:73
+msgid "Back"
+msgstr "Назад"
+
+#: .\social_network\templates\accounts\edit_profile.html:74
+msgid "Crop and upload"
+msgstr "Обрізати і завантажити"
+
+#: .\social_network\templates\accounts\profile.html:12
+#, python-format
+msgid "%(user)s profile "
+msgstr "%(user)s фото "
+
+#: .\social_network\templates\accounts\profile.html:14
+#: .\social_network\templates\base.html:41
+msgid "My profile"
+msgstr "Мій профіль"
+
+#: .\social_network\templates\accounts\profile.html:39
+msgid "Username:"
+msgstr "Нік:"
+
+#: .\social_network\templates\accounts\profile.html:50
+#: .\social_network\templates\accounts\profile.html:52
+msgid "First name:"
+msgstr "Ім'я:"
+
+#: .\social_network\templates\accounts\profile.html:52
+#, fuzzy
+#| msgid "First name:"
+msgid "Add first name"
+msgstr "Додати Ім'я"
+
+#: .\social_network\templates\accounts\profile.html:57
+#: .\social_network\templates\accounts\profile.html:59
+msgid "Last name:"
+msgstr "Прізвище:"
+
+#: .\social_network\templates\accounts\profile.html:59
+#, fuzzy
+#| msgid "Last name:"
+msgid "Add last name"
+msgstr "Додати Прізвище:"
+
+#: .\social_network\templates\accounts\profile.html:64
+#: .\social_network\templates\accounts\profile.html:66
+msgid "Birth date:"
+msgstr "Дата народження:"
+
+#: .\social_network\templates\accounts\profile.html:66
+msgid "Add birth date"
+msgstr "Додати дату народження"
+
+#: .\social_network\templates\base.html:35
+msgid "Home"
+msgstr "Головна"
+
+#: .\social_network\templates\base.html:42
+msgid "Messages"
+msgstr "Повідомлення"
+
+#: .\social_network\templates\base.html:43
+msgid "Logout"
+msgstr "Вихід"
+
+#: .\social_network\templates\base.html:99
+msgid "2017. Pavlo Olshansky."
+msgstr "2017. Павло Ольшанський."
+
+#: .\social_network\templates\base.html:99
+msgid "All Rights Reserved."
+msgstr "Усі Права Захищено."
+
+#: .\social_network\templates\home.html:10
+msgid "Welcome"
+msgstr "Вітаємо"
+
+#: .\social_network\templates\home.html:14
+msgid "Login or"
+msgstr "Увійти або"
+
+#: .\social_network\templates\home.html:14
+#: .\social_network\templates\registration\login.html:48
+msgid "Sign up"
+msgstr "Зареєструватися"
+
+#: .\social_network\templates\home.html:17
+#: .\social_network\templates\registration\login.html:24
+#, fuzzy
+#| msgid "Your username and password didn't match. Please try again."
+msgid "Your username and password didn't match."
+msgstr "Ваш нік чи пароль невірний. Будь ласка повторіть."
+
+#: .\social_network\templates\home.html:27
+#: .\social_network\templates\registration\login.html:53
+msgid "Login with Facebook"
+msgstr "Зайти через Facebook"
+
+#: .\social_network\templates\home.html:30
+msgid "Forgot password?"
+msgstr "Забули пароль?"
+
+#: .\social_network\templates\home.html:50
+msgid "Share the website"
+msgstr "Поширити сайт"
+
+#: .\social_network\templates\home.html:52
+msgid "Share"
+msgstr "Поширити"
+
+#: .\social_network\templates\home.html:62
+msgid "Best users"
+msgstr "Найкращі користувачі"
+
+#: .\social_network\templates\home.html:77
+msgid "View"
+msgstr "Переглянути"
+
+#: .\social_network\templates\home.html:78
+#, fuzzy
+#| msgid "Profile"
+msgid "profile"
+msgstr "Профіль"
+
+#: .\social_network\templates\postman\base_folder.html:15
+msgid "Sorry, this page number is invalid."
+msgstr "Ця сторінка недоступна."
+
+#: .\social_network\templates\postman\base_folder.html:19
+msgid "by conversation"
+msgstr "за розмовами"
+
+#: .\social_network\templates\postman\base_folder.html:20
+msgid "by message"
+msgstr "за повідомленнями"
+
+#: .\social_network\templates\postman\base_folder.html:25
+msgid "Delete"
+msgstr "Видалити"
+
+#: .\social_network\templates\postman\base_folder.html:27
+msgid "Archive"
+msgstr "Архівувати"
+
+#: .\social_network\templates\postman\base_folder.html:29
+msgid "Undelete"
+msgstr "Повернути з видалених"
+
+#: .\social_network\templates\postman\base_folder.html:31
+msgid "Mark as read"
+msgstr "Позначити як прочитане"
+
+#: .\social_network\templates\postman\base_folder.html:33
+msgid "Mark as unread"
+msgstr "Позначити як непрочитане"
+
+#: .\social_network\templates\postman\base_folder.html:38
+msgid "Action"
+msgstr "Дія"
+
+#: .\social_network\templates\postman\base_folder.html:39
+msgid "Sender"
+msgstr "Відправник"
+
+#: .\social_network\templates\postman\base_folder.html:40
+msgid "Recipient"
+msgstr "Отримувач"
+
+#: .\social_network\templates\postman\base_folder.html:41
+msgid "Subject"
+msgstr "Тема"
+
+#: .\social_network\templates\postman\base_folder.html:42
+msgid "Date"
+msgstr "Дата"
+
+#: .\social_network\templates\postman\base_folder.html:66
+msgid "g:i A,M j,n/j/y"
+msgstr ""
+
+#: .\social_network\templates\postman\base_folder.html:73
+msgid "No messages."
+msgstr "Немає повідомлень."
+
+#: .\social_network\templates\registration\account_activation_email.html:3
+msgid "Hi"
+msgstr "Привіт"
+
+#: .\social_network\templates\registration\account_activation_email.html:5
+msgid "Please click on the link below to confirm your registration:"
+msgstr "Натисніть на посилання знизу для підтвердження Вашої реєстрації:"
+
+#: .\social_network\templates\registration\account_activation_invalid.html:4
+msgid ""
+"The confirmation link was invalid, possibly because it has already been used."
+msgstr ""
+"Посилання активації недоступне, можливо тому що воно уже було використане."
+
+#: .\social_network\templates\registration\login.html:8
+#: .\social_network\templates\registration\login.html:20
+#: .\social_network\templates\registration\login.html:41
+msgid "Login"
+msgstr "Увійти"
+
+#: .\social_network\templates\registration\login.html:44
+#, fuzzy
+#| msgid "Forgot password"
+msgid "Lost your password"
+msgstr "Забули пароль"
+
+#: .\social_network\templates\registration\login.html:51
+msgid "or"
+msgstr "чи"
+
+#: .\social_network\templates\registration\password_reset_complete.html:6
+msgid "Your password has been set. You may go ahead and"
+msgstr "Ваш пароль встановлено. Ви можете"
+
+#: .\social_network\templates\registration\password_reset_complete.html:6
+msgid "login"
+msgstr "увійти"
+
+#: .\social_network\templates\registration\password_reset_complete.html:6
+msgid "now."
+msgstr "тепер"
+
+#: .\social_network\templates\registration\password_reset_email.html:4
+#, python-format
+msgid ""
+" To initiate the password reset process for your %(user.get_username)s "
+"TestSite Account,\n"
+"click the link below: "
+msgstr ""
+" Щоб закінчити змінювати пароль для Вашого %(user.get_username)s акаунту,\n"
+"натисніть посилання знизу: "
+
+#: .\social_network\templates\registration\password_reset_email.html:9
+msgid ""
+" If clicking the link above doesn't work, please copy and paste the URL in a "
+"new browser\n"
+"window instead.\n"
+"\n"
+"Sincerely,\n"
+"The TestSite Team "
+msgstr ""
+" Якщо натискання посилання не працює, будь ласка скопіюйте його і вставте у "
+"браузер \n"
+"натомість.\n"
+"\n"
+"З найкращими побажаннями,\n"
+"Команда TestSite "
+
+#: .\social_network\templates\registration\password_reset_form.html:5
+msgid "Forgot password"
+msgstr "Забули пароль"
+
+#: .\social_network\templates\registration\password_reset_subject.txt:2
+msgid "TestSite password reset"
+msgstr "TestSite відновлення паролю"
+
+#~ msgid "Optional."
+#~ msgstr "Не обов'язково."
+
+#~ msgid "Optional. Format: YYYY-MM-DD"
+#~ msgstr "Не обов'язково. Формат: РРРР-ММ-ДД"
+
+#~ msgid "Required. Inform a valid email address."
+#~ msgstr "Обов'язково. Для підтвердження реєстрації."
+
+#, fuzzy
+#~| msgid "Email"
+#~ msgid "Emai;"
+#~ msgstr "Пошта"

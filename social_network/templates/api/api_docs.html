@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <p>
+    <h2>{% trans 'Welcome to Social Lemon API docs!' %}</h2>
+  </p>
+
+  	<h3>
+	  	<p>You can grab your token <a href="/api/api-token-auth">http://{{ domain }}/api/api-token-auth/</a> 
+	  	<p>Your information about users <a href="/api/users/">http://{{ domain }}/api/users/</a>
+	  	<p>Detailed informarion about user like http://{{ domain }}/api/users/{user_id}/
+  	</h3>
+
+  <p>
+    <p>API is available only for auth users.
+    You can auth with your username and password manualy:
+    <p><strong>Example</strong> <small>(Python)</small>
+    <pre>
+	<code>
+import requests
+requests.get('http://{{ domain }}/api/users/', auth=('&lt;username&gt;', '&lt;password&gt;'))
+	</code>
+	</pre>
+
+	<p>Or you can get your token and auth with it.
+	<h3>Getting token</h3>
+	<p><strong>Example</strong> <small>(Python)</small>
+    <pre>
+	<code>
+requests.post('http://{{ domain }}/api/api-token-auth/, data={'username': '&lt;username&gt;', 'password': '&lt;password&gt;'})
+	</code>
+	</pre>
+	
+	<p><h3>Getting access to API with token</h3>
+	<p><strong>Example</strong> <small>(Python)</small>
+    <pre>
+	<code>
+import requests
+headers = {
+    'Authorization': 'Token f7e03643f5840ade123c61bc5eddd9abbb55a071',
+}
+requests.get('http://{{ domain }}/api/users/', headers=headers)
+	</code>
+	</pre>
+	
+
+{% endblock %}

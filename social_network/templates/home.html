@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Welcome!{% endblock title %}
+
+{% block menu %}{% endblock menu %}
+
+{% block left_header %}
+{{ block.super }}
+	{% if user.is_authenticated %}
+		<p>{% trans 'Welcome' %}, {{ user }}!</p>
+		<p><a href="/logout/">Logout</a></p>
+	{% else %}
+
+		{% trans 'Login or' %} <a href="{% url 'home:signup' %}">{% trans 'Sign up' %}</a>
+			
+		{% if form.errors %}
+			<p style="color: red">{% trans "Your username and password didn't match." %}</p>
+    	{% endif %}
+
+		<form method="post">
+	    {% csrf_token %}
+	    {% for field in form %}
+	      <p>{{ field }}
+			{% endfor %}
+	    <p><input type="submit" value="Login" />
+	    <a href="/accounts/facebook/login" class="btn btn-block btn-social btn-xs btn-facebook">
+        	<span class="fa fa-facebook"></span> {% trans 'Login with Facebook' %}
+	    </a>
+
+	    <p><a href="{% url 'home:password_reset' %}">{% trans 'Forgot password?' %}</a>
+  	</form>
+
+
+	{% endif %}
+
+
+{% endblock left_header %}
+
+{% block main %}
+<!-- Main -->
+<div id="main">
+
+	<!-- One -->
+		<section id="one">
+			<header class="major">
+				<h2>Ipsum lorem dolor aliquam ante commodo<br />
+				magna sed accumsan arcu neque.</h2>
+			</header>
+
+				<p>{% trans 'Share the website' %}!</p>
+
+				<div class="fb-share-button" data-href="http://social-lemon.33ivh4qiwe.eu-central-1.elasticbeanstalk.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">{% trans 'Share' %}</a></div>
+
+			<br><p><h2>Use our <strong><a href="/api/">API</a></strong> for free</h2></p>
+			<p>Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.</p>
+			<ul class="actions">
+				<li><a href="#" class="button">Learn More</a></li>
+			</ul>
+		</section>
+
+	<!-- Two -->
+		<section id="two">
+			<h2>{% trans 'Best users' %}</h2>
+
+			<div class="row">
+
+			{% for user in recommendations %}
+				<article class="6u 12u$(xsmall) work-item">
+					{% if user.socialaccount_set.all.0.get_avatar_url %}
+						<a href="{{ user.socialaccount_set.all.0.get_avatar_url }}" class="image fit thumb">
+						<img src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
+					{% else %}
+						<a href="{{ user.profile.file.url }}" class="image fit thumb">
+						<img src="{{ user.profile.file.url }}">
+					{% endif %}
+					</a>
+					<h3>{{ user.username }}</h3>
+					<p><a href="/profile/{{ user.id }}/" class="button">{% trans 'View' %} {% if user.first_name and user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %} 
+					{% trans 'profile' %}</a></p>
+				</article>
+			{% endfor %}
+		</section>
+
+
+	<!-- Four -->
+	
+		<section id="four">
+				<blockquote></blockquote>
+		</section>
+						
+</div>
+
+{% endblock main %}
+
+{% block extra_js %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.10&appId=871643736345060";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+{% endblock extra_js %}
