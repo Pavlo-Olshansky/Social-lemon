@@ -6,6 +6,7 @@ staticfiles/
 .ebextensions/02_python.config
 Social.git/
 Social.git.bfg-report/
+home/managment/
 
 
 # Elastic Beanstalk Files
