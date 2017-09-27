@@ -10,6 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.models import User
 from django.utils.encoding import force_text
@@ -28,7 +29,6 @@ def signup(request):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.birth_date = form.cleaned_data.get('birth_date')
-            user.save()
             # user = form.save(commit=False)
             # user.is_active = False
             # user.refresh_from_db()  # load the profile instance created by the signal
@@ -129,13 +129,11 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect(reverse('home:view_profile'))
-        else:
-            return redirect(reverse('home:change_password'))
     else:
         form = PasswordChangeForm(user=request.user)
 
-        context = {'form': form}
-        return render(request, 'accounts/change_password.html', context)
+    context = {'form': form}
+    return render(request, 'accounts/change_password.html', context)
 
 def recommendation_list():
     # return [User.objects.get(pk=1), User.objects.get(pk=2)]
