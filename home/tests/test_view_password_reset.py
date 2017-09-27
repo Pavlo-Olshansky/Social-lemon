@@ -18,6 +18,10 @@ class PasswordResetTests(TestCase):
     def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
+    def test_view_function(self):
+        view = resolve('/password_reset/')
+        self.assertEquals(view.func, auth_views.password_reset)
+
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
@@ -77,6 +81,10 @@ class PasswordResetDoneTests(TestCase):
     def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
+    def test_view_function(self):
+        view = resolve('/reset/done/')
+        self.assertEquals(view.func, auth_views.password_reset_complete)
+
 
 class PasswordResetConfirmTests(TestCase):
     def setUp(self):
@@ -96,6 +104,10 @@ class PasswordResetConfirmTests(TestCase):
     def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
+    def test_view_function(self):
+        view = resolve('/reset/{uidb64}/{token}/'.format(uidb64=self.uid, token=self.token))
+        self.assertEquals(view.func, auth_views.password_reset_confirm)
+
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
@@ -106,7 +118,7 @@ class PasswordResetConfirmTests(TestCase):
     def test_form_inputs(self):
         '''
         The view must contain 2 inputs: csrf and 2 password fields
-        6 inputs for languag elocalization
+        6 inputs for language localization
         '''
         self.assertContains(self.response, '<input', 9)
         self.assertContains(self.response, 'type="password"', 2)
@@ -141,3 +153,7 @@ class PasswordResetCompleteTests(TestCase):
 
     def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
+
+    def test_view_function(self):
+        view = resolve('/reset/done/')
+        self.assertEquals(view.func, auth_views.password_reset_complete)

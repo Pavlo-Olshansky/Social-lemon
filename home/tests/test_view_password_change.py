@@ -19,6 +19,10 @@ class PasswordChangeTests(TestCase):
     def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
+    def test_url_resolves_correct_view(self):
+        view = resolve('/profile/password/')
+        self.assertEquals(view.func, views.change_password)
+
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
