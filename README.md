@@ -1,4 +1,4 @@
-# ![alt text][logo] Social
+# ![alt text][logo] Social-lemon
 
 > Social network deployed on AWS [here](http://lemons.cauxqqmejx.eu-central-1.elasticbeanstalk.com)
 > and on Heroku [here](https://social-lemon.herokuapp.com)
@@ -22,6 +22,6 @@
   * Localization (EN-US / UA)
   * REST API with authorization and token
 
-[logo]: https://github.com/Pavlo-Olshansky/Social/blob/master/static/images/lemon_mini.png "Logo"
+[logo]: https://github.com/Pavlo-Olshansky/Social-lemon/blob/master/static/images/lemon_mini.png "Logo"
 
 
