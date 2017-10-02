@@ -9,7 +9,7 @@ urlpatterns = [
     # url(r'^$', views.HomePage.as_view(), name='home'),
 
     # Register new user
-    url(r'^signup/', views.signup, name='signup'),
+    url(r'^signup/', views.SignUp.as_view(), name='signup'),
 
     # Login URL
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html', 'authentication_form': CustomAuthForm}, name='login'),
@@ -37,9 +37,9 @@ urlpatterns = [
         views.activate, name='activate'),
 
     # Profile URL's
-    url(r'^profile/$', views.view_profile, name='view_profile'),
-    url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
+    url(r'^profile/$', views.ViewProfile.as_view(), name='view_profile'),
+    url(r'^profile/(?P<pk>\d+)/$', views.ViewProfile.as_view(), name='view_profile_with_pk'),
     url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
-    url(r'^profile/password/$', views.change_password, name='change_password'),
+    url(r'^profile/password/$', views.ChangePassword.as_view(), name='change_password'),
 
 ]

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.views.generic.base import TemplateView
+from django.views import View
 from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, EditProfileInfo, EditProfilePhoto, EditProfileAdditionalInfo
 from django.contrib.sites.shortcuts import get_current_site
@@ -21,10 +22,20 @@ from django.template import RequestContext
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
+from django.views.generic.edit import UpdateView
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
+
+class SignUp(View):
+    singup_form = SignUpForm
+    template_name = 'registration/signup.html'
+
+    def get(self, request):
+        form = self.singup_form()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.singup_form(request.POST)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
@@ -49,9 +60,8 @@ def signup(request):
             user.email_user(subject, message)
 
             return redirect('/')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
+
 
 
 def activate(request, uidb64, token):
@@ -74,21 +84,23 @@ def account_activation_sent(request):
     return render(request, 'home.html')
 
 
-@login_required(login_url='/login/')
-def view_profile(request, pk=None):
-    if pk:
-        user = User.objects.get(pk=pk)
-    else:
-        user = request.user
+@method_decorator(login_required, name='dispatch')
+class ViewProfile(View):
+    template_name = 'accounts/profile.html'
 
-    if request.user.id == user.id:
-        is_own = True
-    else:
-        is_own = False
+    def get(self, request, pk=None):
+        if pk:
+            user = User.objects.get(pk=pk)
+        else:
+            user = request.user
 
-    context = {'user': user, 'is_own': is_own}
-    return render(request, 'accounts/profile.html', context)
+        if request.user.id == user.id:
+            is_own = True
+        else:
+            is_own = False
 
+        context = {'user': user, 'is_own': is_own}
+        return render(request, self.template_name, context)
 
 @login_required(login_url='/login/')
 def edit_profile(request):
@@ -120,20 +132,23 @@ def edit_profile(request):
     return render(request, 'accounts/edit_profile.html', context)
 
 
-@login_required(login_url='/login/')
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
+@method_decorator(login_required, name='dispatch')
+class ChangePassword(View):
+    form = PasswordChangeForm
+    template_name = 'accounts/change_password.html'
+
+    def get(self, request):
+        form = self.form(user=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form(data=request.POST, user=request.user)
 
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect(reverse('home:view_profile'))
-    else:
-        form = PasswordChangeForm(user=request.user)
-
-    context = {'form': form}
-    return render(request, 'accounts/change_password.html', context)
+        return render(request, self.template_name, {'form': form})
 
 def recommendation_list():
     # return [User.objects.get(pk=1), User.objects.get(pk=2)]
