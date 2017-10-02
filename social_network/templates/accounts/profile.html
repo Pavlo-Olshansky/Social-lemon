@@ -58,12 +58,5 @@
   <p><i>{% blocktrans %}Last name:{% endblocktrans %}</i> <a href="{% url 'home:edit_profile' %}">{% blocktrans %}Add last name{% endblocktrans %}</a></p>
 {% endif %}
 
-<!-- Birth day -->
-{% if user.profile.birth_date %}
-  <p><i>{% blocktrans %}Birth date:{% endblocktrans %}</i> {{ user.profile.birth_date }}</p>
-{% elif is_own %}
-  <p><i>{% blocktrans %}Birth date:{% endblocktrans %}</i> <a href="{% url 'home:edit_profile' %}">{% blocktrans %}Add birth date{% endblocktrans %}</a></p>
-{% endif %}
-
 {% endblock content %}
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.contrib.auth import login, logout, authenticate
-from .forms import SignUpForm, EditProfileInfo, EditProfilePhoto, EditProfileAdditionalInfo
+from .forms import SignUpForm, EditProfileInfo, EditProfilePhoto
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -63,7 +63,6 @@ class SignUp(View):
         return render(request, self.template_name, {'form': form})
 
 
-
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -108,7 +107,6 @@ def edit_profile(request):
     if request.method == 'POST':        
         profile_form = EditProfilePhoto(request.POST, request.FILES, instance=request.user.profile)
         user_form = EditProfileInfo(request.POST, instance=request.user)
-        additional_form = EditProfileAdditionalInfo(request.POST, instance=request.user.profile)
 
         if profile_form.is_valid():
             profile_form.save()
@@ -118,17 +116,13 @@ def edit_profile(request):
             user_form.save()
             return redirect(reverse('home:edit_profile'))
 
-        if additional_form.is_valid():
-            additional_form.save()
-            return redirect(reverse('home:edit_profile'))
 
     else:
         profile_form = EditProfilePhoto(instance=request.user.profile)
         user_form = EditProfileInfo(instance=request.user)
-        additional_form = EditProfileAdditionalInfo(instance=request.user.profile)
 
     
-    context = {'profile_form': profile_form, 'user_form': user_form, 'additional_form': additional_form}
+    context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'accounts/edit_profile.html', context)
 
 

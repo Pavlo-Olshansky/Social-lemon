@@ -19,11 +19,6 @@
     <p><button type="submit">{% trans 'Submit' %}</button></p>
   </form>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ additional_form.as_p }}
-    <p><button type="submit">{% trans 'Submit' %}</button></p>
-  </form>
 <hr>
 <h2>{% trans 'Change profile image' %}</h2>
 <hr>

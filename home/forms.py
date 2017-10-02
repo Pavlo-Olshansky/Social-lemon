@@ -16,21 +16,17 @@ from django.utils.translation import gettext_lazy as _
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(label=_('First name'), max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(label=_('Last name'), max_length=30, required=False, help_text='Optional.')
-    birth_date = forms.DateField(label=_('Birth date'), required=False, help_text='Optional. Format: YYYY-MM-DD')
-    email = forms.EmailField(label=_('Email'), max_length=254, help_text='Required. Inform a valid email address.')
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'birth_date', 'email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
     def save(self, commit=True):
         user = super(SignUpForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-        user.birth_date = self.cleaned_data['birth_date']
+        user.description = self.cleaned_data['description']
 
         user.save()
 
@@ -42,20 +38,13 @@ class CustomAuthForm(AuthenticationForm):
 
 
 class EditProfileInfo(forms.ModelForm):
-    first_name = forms.CharField(label=_('First name'), required=False)
-    last_name = forms.CharField(label=_('Last name'), required=False)
+    # first_name = forms.CharField(label=_('First name'), required=False)
+    # last_name = forms.CharField(label=_('Last name'), required=False)
 
     class Meta:
-        model = Profile
+        model = User
         fields = ('first_name', 'last_name')
 
-
-class EditProfileAdditionalInfo(forms.ModelForm):
-    birth_date = forms.DateField(label=_('Birth date'), required=False)
-
-    class Meta:
-        model = Profile
-        fields = ('birth_date', )
 
 
 class EditProfilePhoto(forms.ModelForm):
