@@ -49,7 +49,7 @@ class SignUp(View):
             user.save()
 
             current_site = get_current_site(request)
-            send_email.delay(user=user.username, current_site=current_site.domain)
+            send_email.delay(user=user.username, user_pk=user.pk, current_site=current_site.domain)
 
             return redirect('/')
         return render(request, self.template_name, {'form': form})
