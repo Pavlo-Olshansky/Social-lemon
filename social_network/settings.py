@@ -231,3 +231,5 @@ POSTMAN_AUTO_MODERATE_AS = True # default is None
 # 'arg_name': '', # default is 'channel'
 # 'arg_default': 'postman_friends', # no default, mandatory to enable the feature
 # } # default is {}
+
+CELERY_BROKER_URL = config('CELERY_BROKER_URL')
