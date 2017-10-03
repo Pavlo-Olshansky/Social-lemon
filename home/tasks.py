@@ -10,7 +10,7 @@ def send_email(user, current_site):
 	subject = email_subject
 	message = render_to_string(template_name, {
 	    'user': user,
-	    'domain': current_site.domain,
+	    'domain': current_site,
 	    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
 	    'token': account_activation_token.make_token(user),
 	})
