@@ -21,10 +21,10 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from django.http import JsonResponse
-from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import UpdateView
 
+from .tasks import send_email
 
 class SignUp(View):
     singup_form = SignUpForm
@@ -39,7 +39,6 @@ class SignUp(View):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.birth_date = form.cleaned_data.get('birth_date')
             # user = form.save(commit=False)
             # user.is_active = False
             # user.refresh_from_db()  # load the profile instance created by the signal
@@ -50,14 +49,7 @@ class SignUp(View):
             user.save()
 
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
-            message = render_to_string('registration/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
+            send_email.delay(user=user, current_site=current_site)
 
             return redirect('/')
         return render(request, self.template_name, {'form': form})
