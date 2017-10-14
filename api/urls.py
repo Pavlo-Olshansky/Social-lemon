@@ -10,8 +10,8 @@ router = DefaultRouter()
 router.register(r'users', views.UserListRetrieveViewSet, base_name='users')
 
 urlpatterns = (
+    url(r'^$', views.api_docs, name="api_docs"),
 	url(r'^', include(router.urls)),
-    url(r'^docs$', views.api_docs, name="api_docs"),
 
     # url(r'^users/$', views.UserList.as_view(), name="list_view"),
     # url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetailsView.as_view(), name="detail_view"),
