@@ -1,8 +1,5 @@
 # ![alt text][logo] Social-lemon
 
-> Social network deployed on AWS [here](http://lemons.cauxqqmejx.eu-central-1.elasticbeanstalk.com)
-> and on Heroku [here](https://social-lemon.herokuapp.com)
----
 
 * Tools/technologies used:
   * Python v3.5.2
